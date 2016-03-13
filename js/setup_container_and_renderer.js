@@ -1,4 +1,4 @@
-function setupContainerRenderer() {
+function setupContainerAndRenderer() {
   renderer = new THREE.WebGLRenderer({antialias: true});
   renderer.setPixelRatio(window.devicePixelRatio);
   renderer.setClearColor(0xffffff);

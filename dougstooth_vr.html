@@ -21,16 +21,19 @@
 
 		<script src="js/animate.js"></script>
 		<script src="js/init.js"></script>
-		<script src="js/load_dougstooth.js"></script>
-		<script src="js/load_light.js"></script>
+		<script src="js/load_dougsteeth.js"></script>
+		<script src="js/load_lights.js"></script>
 		<script src="js/load_screen_cube.js"></script>
 		<script src="js/load_vr_effect.js"></script>
 		<script src="js/on_window_resize.js"></script>
 		<script src="js/render.js"></script>
-		<script src="js/setup_container_renderer.js"></script>
+		<script src="js/setup_container_and_renderer.js"></script>
 
 		<script>
-			var camera, secondCamera, scene, secondScene, renderedTexture, renderer, vrEffect, vrControls;
+			var renderer, vrEffect, vrControls;
+			var camera, scene;
+			var secondCamera, secondScene, renderedTexture;
+
 			init();
 			animate();
 		</script>

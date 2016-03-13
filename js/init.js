@@ -1,5 +1,5 @@
 function init() {
-  setupContainerRenderer();
+  setupContainerAndRenderer();
   camera = new THREE.PerspectiveCamera( 70, window.innerWidth / window.innerHeight, 1, 10000 );
 
   renderedTexture = new THREE.WebGLRenderTarget( window.innerWidth, window.innerHeight, { minFilter: THREE.LinearFilter, magFilter: THREE.NearestFilter, format: THREE.RGBFormat } );
@@ -12,9 +12,8 @@ function init() {
   secondScene = new THREE.Scene();
   secondScene.add(secondCamera);
 
-  loadLight();
-  loadDougstooth();
-  loadSecondDougstooth();
+  loadLights();
+  loadDougsteeth();
 
   loadScreenCube();
 
