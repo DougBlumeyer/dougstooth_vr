@@ -17,6 +17,7 @@ function init() {
   loadSecondDougstooth();
 
   loadScreenCube();
+
   new THREE.Raycaster();
   vrControls = new THREE.VRControls(camera);
   vrEffect = vrEffect();

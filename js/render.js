@@ -13,6 +13,7 @@ function render() {
   // console.log('what is the renderer??', renderer, secondScene, secondCamera, renderedTexture)
   renderer.clear();
 
+  // console.log(renderedTexture)
   renderer.render( secondScene, secondCamera, renderedTexture, true );
 
 
