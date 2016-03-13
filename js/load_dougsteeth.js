@@ -17,7 +17,6 @@ function loadDougsteeth() {
       if (child instanceof THREE.Mesh) child.material = material2;
     });
     object.position.z = -5;
-    object.position.x = -5;
     window.secondDougstooth = object;
     secondScene.add(object);
   });

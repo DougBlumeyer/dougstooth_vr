@@ -90,8 +90,8 @@ THREE.VRControls = function ( onError ) {
 					player.quaternion.copy( state.orientation );
 					camera.quaternion.copy( state.orientation );
 
-					secondPlayer.quaternion.fromArray( state.orientation );
-					secondCamera.quaternion.fromArray( state.orientation );
+					secondPlayer.quaternion.copy( state.orientation );
+					secondCamera.quaternion.copy( state.orientation );
 
 				}
 
