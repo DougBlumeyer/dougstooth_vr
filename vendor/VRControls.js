@@ -5,40 +5,27 @@
 
 THREE.VRControls = function ( onError ) {
 	var scope = this;
-
 	var vrInput;
 
 	function gotVRDevices( devices ) {
-
 		for ( var i = 0; i < devices.length; i ++ ) {
-
 			if ( ( 'VRDisplay' in window && devices[ i ] instanceof VRDisplay ) ||
 				 ( 'PositionSensorVRDevice' in window && devices[ i ] instanceof PositionSensorVRDevice ) ) {
-
 				vrInput = devices[ i ];
 				break;  // We keep the first we encounter
-
 			}
-
 		}
 
 		if ( !vrInput ) {
-
 			if ( onError ) onError( 'VR input not available.' );
-
 		}
-
 	}
 
 	if ( navigator.getVRDisplays ) {
-
 		navigator.getVRDisplays().then( gotVRDevices );
-
 	} else if ( navigator.getVRDevices ) {
-
 		// Deprecated API.
 		navigator.getVRDevices().then( gotVRDevices );
-
 	}
 
 	// the Rift SDK returns the position in meters
@@ -48,21 +35,16 @@ THREE.VRControls = function ( onError ) {
 	this.scale = 1;
 
 	this.update = function () {
-
 		if ( vrInput ) {
-
 			if ( vrInput.getPose ) {
-
 				var pose = vrInput.getPose();
 
 				if ( pose.orientation !== null ) {
-
 					player.quaternion.fromArray( pose.orientation );
 					camera.quaternion.fromArray( pose.orientation );
 
 					secondPlayer.quaternion.fromArray( pose.orientation );
 					secondCamera.quaternion.fromArray( pose.orientation );
-
 				}
 
 				if ( pose.position !== null ) {
@@ -77,26 +59,21 @@ THREE.VRControls = function ( onError ) {
 					secondPosVector.y = pose.position.y + secondPlayer.position.y;
 					secondPosVector.z = pose.position.z + secondPlayer.position.z;
 					secondCamera.position.fromArray( secondPosVector).multiplyScalar( scope.scale );
-
 				}
-
 			} else {
 
 				// Deprecated API.
 				var state = vrInput.getState();
 
 				if ( state.orientation !== null ) {
-
 					player.quaternion.copy( state.orientation );
 					camera.quaternion.copy( state.orientation );
 
 					secondPlayer.quaternion.copy( state.orientation );
 					secondCamera.quaternion.copy( state.orientation );
-
 				}
 
 				if ( state.position !== null ) {
-
 					var posVector = new THREE.Vector3();
 					posVector.x = state.position.x + player.position.x;
 					posVector.y = state.position.y + player.position.y;
@@ -108,50 +85,31 @@ THREE.VRControls = function ( onError ) {
 					secondPosVector.y = state.position.y + secondPlayer.position.y;
 					secondPosVector.z = state.position.z + secondPlayer.position.z;
 					secondCamera.position.copy( secondPosVector).multiplyScalar( scope.scale );
-
 				}
-
 			}
-
 		}
-
 	};
 
 	this.resetSensor = function () {
-
 		if ( vrInput ) {
-
 			if ( vrInput.resetPose !== undefined ) {
-
 				vrInput.resetPose();
-
 			} else if ( vrInput.resetSensor !== undefined ) {
-
 				// Deprecated API.
 				vrInput.resetSensor();
-
 			} else if ( vrInput.zeroSensor !== undefined ) {
-
 				// Really deprecated API.
 				vrInput.zeroSensor();
-
 			}
-
 		}
-
 	};
 
 	this.zeroSensor = function () {
-
 		console.warn( 'THREE.VRControls: .zeroSensor() is now .resetSensor().' );
 		this.resetSensor();
-
 	};
 
 	this.dispose = function () {
-
 		vrInput = null;
-
 	};
-
 };
