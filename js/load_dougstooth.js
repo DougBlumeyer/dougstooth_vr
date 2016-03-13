@@ -6,6 +6,7 @@ function loadDougstooth() {
       if (child instanceof THREE.Mesh) child.material = material;
     });
     object.position.z = -5;
+    window.dougstooth = object;
     scene.add(object);
   });
 }
