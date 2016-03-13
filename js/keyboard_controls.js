@@ -17,8 +17,7 @@ function keyboardControls() {
         moveRight = true;
         break;
       case 32: // space
-        if ( canJump === true ) velocity.y += 350;
-        canJump = false;
+        inSecondWorld = !inSecondWorld;
         break;
     }
   };
