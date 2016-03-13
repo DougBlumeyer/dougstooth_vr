@@ -1,4 +1,4 @@
-function setupContainerAndRenderer() {
+function setupContainerRendererAndRaycaster() {
   renderer = new THREE.WebGLRenderer({antialias: true});
   renderer.setPixelRatio(window.devicePixelRatio);
   renderer.setClearColor(0xffffff);
@@ -8,4 +8,6 @@ function setupContainerAndRenderer() {
   container = document.createElement('div');
   document.body.appendChild(container);
   container.appendChild(renderer.domElement);
+
+  raycaster = new THREE.Raycaster();
 }
