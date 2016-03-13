@@ -9,7 +9,8 @@ function init() {
 
   secondCamera = new THREE.PerspectiveCamera( 70, window.innerWidth / window.innerHeight, 1, 10000 );
   secondCamera.position.set(-5, 0, 0)
-  secondCamera.lookAt(-5, 0, -5);
+
+  secondPlayer = new THREE.Object3D();
 
   scene = new THREE.Scene();
   secondScene = new THREE.Scene();
@@ -21,6 +22,6 @@ function init() {
   loadScreenCube();
 
   new THREE.Raycaster();
-  vrControls = new THREE.VRControls(player, camera);
+  vrControls = new THREE.VRControls();
   vrEffect = vrEffect();
 }

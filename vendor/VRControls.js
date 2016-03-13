@@ -3,7 +3,7 @@
  * @author mrdoob / http://mrdoob.com
  */
 
-THREE.VRControls = function ( player, camera, onError ) {
+THREE.VRControls = function ( onError ) {
 	var scope = this;
 
 	var vrInput;
@@ -60,6 +60,9 @@ THREE.VRControls = function ( player, camera, onError ) {
 					player.quaternion.fromArray( pose.orientation );
 					camera.quaternion.fromArray( pose.orientation );
 
+					secondPlayer.quaternion.fromArray( pose.orientation );
+					secondCamera.quaternion.fromArray( pose.orientation );
+
 				}
 
 				if ( pose.position !== null ) {
@@ -68,6 +71,13 @@ THREE.VRControls = function ( player, camera, onError ) {
 					posVector.y = pose.position.y + player.position.y;
 					posVector.z = pose.position.z + player.position.z;
 					camera.position.fromArray( posVector).multiplyScalar( scope.scale );
+
+					var secondPosVector = new THREE.Vector3();
+					secondPosVector.x = pose.position.x + secondPlayer.position.x;
+					secondPosVector.y = pose.position.y + secondPlayer.position.y;
+					secondPosVector.z = pose.position.z + secondPlayer.position.z;
+					secondCamera.position.fromArray( secondPosVector).multiplyScalar( scope.scale );
+
 				}
 
 			} else {
@@ -80,6 +90,9 @@ THREE.VRControls = function ( player, camera, onError ) {
 					player.quaternion.copy( state.orientation );
 					camera.quaternion.copy( state.orientation );
 
+					secondPlayer.quaternion.fromArray( state.orientation );
+					secondCamera.quaternion.fromArray( state.orientation );
+
 				}
 
 				if ( state.position !== null ) {
@@ -89,6 +102,12 @@ THREE.VRControls = function ( player, camera, onError ) {
 					posVector.y = state.position.y + player.position.y;
 					posVector.z = state.position.z + player.position.z;
 					camera.position.copy( posVector).multiplyScalar( scope.scale );
+
+					var secondPosVector = new THREE.Vector3();
+					secondPosVector.x = state.position.x + secondPlayer.position.x;
+					secondPosVector.y = state.position.y + secondPlayer.position.y;
+					secondPosVector.z = state.position.z + secondPlayer.position.z;
+					secondCamera.position.copy( secondPosVector).multiplyScalar( scope.scale );
 
 				}
 
