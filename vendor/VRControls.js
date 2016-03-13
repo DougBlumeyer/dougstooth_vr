@@ -3,8 +3,7 @@
  * @author mrdoob / http://mrdoob.com
  */
 
-THREE.VRControls = function ( player, onError ) {
-	var camera = player.children[0];
+THREE.VRControls = function ( player, camera, onError ) {
 	var scope = this;
 
 	var vrInput;
@@ -58,15 +57,17 @@ THREE.VRControls = function ( player, onError ) {
 
 				if ( pose.orientation !== null ) {
 
-					// object.quaternion.fromArray( pose.orientation );
 					player.quaternion.fromArray( pose.orientation );
+					camera.quaternion.fromArray( pose.orientation );
 
 				}
 
 				if ( pose.position !== null ) {
-
-					camera.position.fromArray( pose.position ).multiplyScalar( scope.scale );
-
+					var posVector = new THREE.Vector3();
+					posVector.x = pose.position.x + player.position.x;
+					posVector.y = pose.position.y + player.position.y;
+					posVector.z = pose.position.z + player.position.z;
+					camera.position.fromArray( posVector).multiplyScalar( scope.scale );
 				}
 
 			} else {
@@ -76,14 +77,18 @@ THREE.VRControls = function ( player, onError ) {
 
 				if ( state.orientation !== null ) {
 
-					// object.quaternion.copy( state.orientation );
 					player.quaternion.copy( state.orientation );
+					camera.quaternion.copy( state.orientation );
 
 				}
 
 				if ( state.position !== null ) {
 
-					camera.position.copy( state.position ).multiplyScalar( scope.scale );
+					var posVector = new THREE.Vector3();
+					posVector.x = state.position.x + player.position.x;
+					posVector.y = state.position.y + player.position.y;
+					posVector.z = state.position.z + player.position.z;
+					camera.position.copy( posVector).multiplyScalar( scope.scale );
 
 				}
 

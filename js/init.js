@@ -4,7 +4,6 @@ function init() {
 
   camera = new THREE.PerspectiveCamera( 70, window.innerWidth / window.innerHeight, 1, 10000 );
   player = new THREE.Object3D();
-  player.add(camera);
 
   renderedTexture = new THREE.WebGLRenderTarget( window.innerWidth, window.innerHeight, { minFilter: THREE.LinearFilter, magFilter: THREE.NearestFilter, format: THREE.RGBFormat } );
 
@@ -22,6 +21,6 @@ function init() {
   loadScreenCube();
 
   new THREE.Raycaster();
-  vrControls = new THREE.VRControls(player);
+  vrControls = new THREE.VRControls(player, camera);
   vrEffect = vrEffect();
 }
