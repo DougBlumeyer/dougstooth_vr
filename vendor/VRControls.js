@@ -3,7 +3,7 @@
  * @author mrdoob / http://mrdoob.com
  */
 
-THREE.VRControls = function ( object, onError ) {
+THREE.VRControls = function ( object, player, onError ) {
 
 	var scope = this;
 
@@ -58,7 +58,8 @@ THREE.VRControls = function ( object, onError ) {
 
 				if ( pose.orientation !== null ) {
 
-					object.quaternion.fromArray( pose.orientation );
+					// object.quaternion.fromArray( pose.orientation );
+					player.quaternion.fromArray( pose.orientation );
 
 				}
 
@@ -75,7 +76,8 @@ THREE.VRControls = function ( object, onError ) {
 
 				if ( state.orientation !== null ) {
 
-					object.quaternion.copy( state.orientation );
+					// object.quaternion.copy( state.orientation );
+					player.quaternion.copy( state.orientation );
 
 				}
 

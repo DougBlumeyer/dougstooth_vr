@@ -1,6 +1,10 @@
 function init() {
   setupContainerAndRenderer();
+  keyboardControls();
+
   camera = new THREE.PerspectiveCamera( 70, window.innerWidth / window.innerHeight, 1, 10000 );
+  player = new THREE.Object3D();
+  player.add(camera);
 
   renderedTexture = new THREE.WebGLRenderTarget( window.innerWidth, window.innerHeight, { minFilter: THREE.LinearFilter, magFilter: THREE.NearestFilter, format: THREE.RGBFormat } );
 
@@ -11,13 +15,13 @@ function init() {
   scene = new THREE.Scene();
   secondScene = new THREE.Scene();
   secondScene.add(secondCamera);
+  scene.add(player);
 
   loadLights();
   loadDougsteeth();
-
   loadScreenCube();
 
   new THREE.Raycaster();
-  vrControls = new THREE.VRControls(camera);
+  vrControls = new THREE.VRControls(camera, player);
   vrEffect = vrEffect();
 }

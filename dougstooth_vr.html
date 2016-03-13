@@ -21,6 +21,7 @@
 
 		<script src="js/animate.js"></script>
 		<script src="js/init.js"></script>
+		<script src="js/keyboard_controls.js"></script>
 		<script src="js/load_dougsteeth.js"></script>
 		<script src="js/load_lights.js"></script>
 		<script src="js/load_screen_cube.js"></script>
@@ -31,8 +32,15 @@
 
 		<script>
 			var renderer, vrEffect, vrControls;
-			var camera, scene;
+			var camera, player, scene;
 			var secondCamera, secondScene, renderedTexture;
+
+			var prevTime = performance.now();
+		  var velocity = new THREE.Vector3();
+		  var moveForward = false;
+		  var moveBackward = false;
+		  var moveLeft = false;
+		  var moveRight = false;
 
 			init();
 			animate();
