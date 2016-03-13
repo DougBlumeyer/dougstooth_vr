@@ -5,7 +5,7 @@ function init() {
   renderedTexture();
   loadLights();
   loadDougsteeth();
-  loadScreenCube();
+  loadScreenCubes();
   new THREE.Raycaster();
   vrControls = new THREE.VRControls();
   vrEffect = vrEffect();
