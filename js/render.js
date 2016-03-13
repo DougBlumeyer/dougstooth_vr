@@ -6,11 +6,13 @@ function render() {
     window.dougstooth.rotation.y += 0.001;
     window.secondDougstooth.rotation.x -= 0.001;
     window.secondDougstooth.rotation.y -= 0.001;
-    window.screenCube.rotation.x -= 0.001;
-    window.screenCube.rotation.y += 0.001;
+    // window.screenCube.rotation.x -= 0.001;
+    // window.screenCube.rotation.y += 0.001;
   }
 
   // console.log('what is the renderer??', renderer, secondScene, secondCamera, renderedTexture)
+  renderer.clear();
+
   renderer.render( secondScene, secondCamera, renderedTexture, true );
 
 

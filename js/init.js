@@ -10,6 +10,7 @@ function init() {
 
   scene = new THREE.Scene();
   secondScene = new THREE.Scene();
+  secondScene.add(secondCamera);
 
   loadLight();
   loadDougstooth();

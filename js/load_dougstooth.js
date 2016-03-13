@@ -21,6 +21,6 @@ function loadSecondDougstooth() {
     object.position.z = -5;
     object.position.x = -5;
     window.secondDougstooth = object;
-    scene.add(object);
+    secondScene.add(object);
   });
 }
