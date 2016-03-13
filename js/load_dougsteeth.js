@@ -1,5 +1,5 @@
 function loadDougsteeth() {
-  var material = new THREE.MeshLambertMaterial({color: Math.random() * 0xffffff});
+  var material = new THREE.MeshLambertMaterial({color: Math.random() * 0x888888 + 0x888888});
   var loader = new THREE.OBJLoader(new THREE.LoadingManager());
   loader.load('assets/dougstooth.obj', function(object) {
     object.traverse(function(child) {
@@ -10,7 +10,7 @@ function loadDougsteeth() {
     scene.add(object);
   });
 
-  var material2 = new THREE.MeshLambertMaterial({color: Math.random() * 0xffffff});
+  var material2 = new THREE.MeshLambertMaterial({color: Math.random() * 0x888888 + 0x888888});
   var loader = new THREE.OBJLoader(new THREE.LoadingManager());
   loader.load('assets/dougstooth.obj', function(object) {
     object.traverse(function(child) {
