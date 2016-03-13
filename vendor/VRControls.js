@@ -3,8 +3,8 @@
  * @author mrdoob / http://mrdoob.com
  */
 
-THREE.VRControls = function ( object, player, onError ) {
-
+THREE.VRControls = function ( player, onError ) {
+	var camera = player.children[0];
 	var scope = this;
 
 	var vrInput;
@@ -65,7 +65,7 @@ THREE.VRControls = function ( object, player, onError ) {
 
 				if ( pose.position !== null ) {
 
-					object.position.fromArray( pose.position ).multiplyScalar( scope.scale );
+					camera.position.fromArray( pose.position ).multiplyScalar( scope.scale );
 
 				}
 
@@ -83,7 +83,7 @@ THREE.VRControls = function ( object, player, onError ) {
 
 				if ( state.position !== null ) {
 
-					object.position.copy( state.position ).multiplyScalar( scope.scale );
+					camera.position.copy( state.position ).multiplyScalar( scope.scale );
 
 				}
 

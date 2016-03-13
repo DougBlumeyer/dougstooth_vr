@@ -22,6 +22,6 @@ function init() {
   loadScreenCube();
 
   new THREE.Raycaster();
-  vrControls = new THREE.VRControls(camera, player);
+  vrControls = new THREE.VRControls(player);
   vrEffect = vrEffect();
 }
