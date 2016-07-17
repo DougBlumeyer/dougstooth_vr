@@ -111,7 +111,7 @@ THREE.VREffect = function ( renderer, onError ) {
 
 				if ( boolean ) {
 
-					resolve( vrHMD.requestPresent( { source: canvas } ) );
+					resolve( vrHMD.requestPresent([ { source: canvas }] ) );
 
 				} else {
 
@@ -210,7 +210,7 @@ THREE.VREffect = function ( renderer, onError ) {
 			renderRectR = { x: size.width / 2, y: 0, width: size.width / 2, height: size.height };
 
 			renderer.setScissorTest( true );
-			// renderer.clear();
+			renderer.clear();
 
 			if ( camera.parent === null ) camera.updateMatrixWorld();
 

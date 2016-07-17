@@ -49,16 +49,16 @@ THREE.VRControls = function ( onError ) {
 
 				if ( pose.position !== null ) {
 					var posVector = new THREE.Vector3();
-					posVector.x = pose.position.x + player.position.x;
-					posVector.y = pose.position.y + player.position.y;
-					posVector.z = pose.position.z + player.position.z;
-					camera.position.fromArray( posVector).multiplyScalar( scope.scale );
+					posVector.x = pose.position[0] + player.position.x;
+					posVector.y = pose.position[1] + player.position.y;
+					posVector.z = pose.position[2] + player.position.z;
+					camera.position.copy( posVector);
 
 					var secondPosVector = new THREE.Vector3();
-					secondPosVector.x = pose.position.x + secondPlayer.position.x;
-					secondPosVector.y = pose.position.y + secondPlayer.position.y;
-					secondPosVector.z = pose.position.z + secondPlayer.position.z;
-					secondCamera.position.fromArray( secondPosVector).multiplyScalar( scope.scale );
+					secondPosVector.x = pose.position[0] + secondPlayer.position.x;
+					secondPosVector.y = pose.position[1] + secondPlayer.position.y;
+					secondPosVector.z = pose.position[2] + secondPlayer.position.z;
+					secondCamera.position.copy( secondPosVector);
 				}
 			} else {
 
@@ -75,16 +75,16 @@ THREE.VRControls = function ( onError ) {
 
 				if ( state.position !== null ) {
 					var posVector = new THREE.Vector3();
-					posVector.x = state.position.x + player.position.x;
-					posVector.y = state.position.y + player.position.y;
-					posVector.z = state.position.z + player.position.z;
-					camera.position.copy( posVector).multiplyScalar( scope.scale );
+					posVector.x = state.position[0] + player.position.x;
+					posVector.y = state.position[1] + player.position.y;
+					posVector.z = state.position[2] + player.position.z;
+					camera.position.copy( posVector);
 
 					var secondPosVector = new THREE.Vector3();
-					secondPosVector.x = state.position.x + secondPlayer.position.x;
-					secondPosVector.y = state.position.y + secondPlayer.position.y;
-					secondPosVector.z = state.position.z + secondPlayer.position.z;
-					secondCamera.position.copy( secondPosVector).multiplyScalar( scope.scale );
+					secondPosVector.x = state.position[0] + secondPlayer.position.x;
+					secondPosVector.y = state.position[1] + secondPlayer.position.y;
+					secondPosVector.z = state.position[2] + secondPlayer.position.z;
+					secondCamera.position.copy( secondPosVector);
 				}
 			}
 		}
