@@ -1,8 +1,8 @@
 function init() {
-  setupContainerRendererAndRaycaster();
-  setupScenesCamerasAndPlayers();
-  keyboardControls();
   renderedTexture();
+  setupScenesCamerasAndPlayers();
+  setupContainerRendererAndRaycaster();
+  keyboardControls();
   loadLights();
   loadDougsteeth();
   loadRooms();

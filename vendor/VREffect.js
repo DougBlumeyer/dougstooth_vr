@@ -164,7 +164,7 @@ THREE.VREffect = function ( renderer, onError ) {
 	var cameraR = new THREE.PerspectiveCamera();
 	cameraR.layers.enable( 2 );
 
-	this.render = function ( scene, camera ) {
+	this.render = function ( scene, camera, composer ) {
 
 		if ( vrHMD && isPresenting ) {
 
@@ -210,7 +210,7 @@ THREE.VREffect = function ( renderer, onError ) {
 			renderRectR = { x: size.width / 2, y: 0, width: size.width / 2, height: size.height };
 
 			renderer.setScissorTest( true );
-			renderer.clear();
+			// renderer.clear();
 
 			if ( camera.parent === null ) camera.updateMatrixWorld();
 
@@ -226,12 +226,12 @@ THREE.VREffect = function ( renderer, onError ) {
 			// render left eye
 			renderer.setViewport( renderRectL.x, renderRectL.y, renderRectL.width, renderRectL.height );
 			renderer.setScissor( renderRectL.x, renderRectL.y, renderRectL.width, renderRectL.height );
-			renderer.render( scene, cameraL );
+			composer.render( scene, cameraL );
 
 			// render right eye
 			renderer.setViewport( renderRectR.x, renderRectR.y, renderRectR.width, renderRectR.height );
 			renderer.setScissor( renderRectR.x, renderRectR.y, renderRectR.width, renderRectR.height );
-			renderer.render( scene, cameraR );
+			composer.render( scene, cameraR );
 
 			renderer.setScissorTest( false );
 
@@ -253,7 +253,8 @@ THREE.VREffect = function ( renderer, onError ) {
 
 		// Regular render mode if not HMD
 
-		renderer.render( scene, camera );
+		// renderer.render( scene, camera );
+		composer.render( scene, camera );
 
 	};
 

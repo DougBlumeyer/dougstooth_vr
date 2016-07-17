@@ -10,4 +10,7 @@ function setupScenesCamerasAndPlayers() {
   secondScene = new THREE.Scene();
   secondScene.add(secondCamera);
   secondScene.add(secondPlayer);
+
+  thirdScene = new THREE.Scene();
+  fourthScene = new THREE.Scene();
 }
