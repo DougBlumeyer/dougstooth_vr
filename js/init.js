@@ -2,6 +2,7 @@ function init() {
   renderedTexture();
   setupScenesCamerasAndPlayers();
   setupContainerRendererAndRaycaster();
+  setupComposers();
   keyboardControls();
   loadLights();
   loadDougsteeth();

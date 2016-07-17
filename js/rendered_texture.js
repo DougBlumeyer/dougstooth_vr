@@ -5,7 +5,7 @@ function renderedTexture() {
     {
       minFilter: THREE.LinearFilter,
       magFilter: THREE.NearestFilter,
-      format: THREE.RGBAFormat //.RGBFormat
+      format: THREE.RGBFormat
     }
   );
 }
