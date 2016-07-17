@@ -41,9 +41,8 @@ THREE.VRControls = function ( onError ) {
 
 				if ( pose.orientation !== null ) {
 					player.quaternion.fromArray( pose.orientation );
-					camera.quaternion.fromArray( pose.orientation );
 
-					secondPlayer.quaternion.fromArray( pose.orientation );
+					camera.quaternion.fromArray( pose.orientation );
 					secondCamera.quaternion.fromArray( pose.orientation );
 				}
 
@@ -52,13 +51,9 @@ THREE.VRControls = function ( onError ) {
 					posVector.x = pose.position[0] + player.position.x;
 					posVector.y = pose.position[1] + player.position.y;
 					posVector.z = pose.position[2] + player.position.z;
-					camera.position.copy( posVector);
 
-					var secondPosVector = new THREE.Vector3();
-					secondPosVector.x = pose.position[0] + secondPlayer.position.x;
-					secondPosVector.y = pose.position[1] + secondPlayer.position.y;
-					secondPosVector.z = pose.position[2] + secondPlayer.position.z;
-					secondCamera.position.copy( secondPosVector);
+					camera.position.copy( posVector);
+					secondCamera.position.copy( posVector);
 				}
 			} else {
 
@@ -67,9 +62,8 @@ THREE.VRControls = function ( onError ) {
 
 				if ( state.orientation !== null ) {
 					player.quaternion.copy( state.orientation );
-					camera.quaternion.copy( state.orientation );
 
-					secondPlayer.quaternion.copy( state.orientation );
+					camera.quaternion.copy( state.orientation );
 					secondCamera.quaternion.copy( state.orientation );
 				}
 
@@ -78,13 +72,9 @@ THREE.VRControls = function ( onError ) {
 					posVector.x = state.position[0] + player.position.x;
 					posVector.y = state.position[1] + player.position.y;
 					posVector.z = state.position[2] + player.position.z;
-					camera.position.copy( posVector);
 
-					var secondPosVector = new THREE.Vector3();
-					secondPosVector.x = state.position[0] + secondPlayer.position.x;
-					secondPosVector.y = state.position[1] + secondPlayer.position.y;
-					secondPosVector.z = state.position[2] + secondPlayer.position.z;
-					secondCamera.position.copy( secondPosVector);
+					camera.position.copy( posVector);
+					secondCamera.position.copy( posVector);
 				}
 			}
 		}

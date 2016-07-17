@@ -22,8 +22,6 @@ function animate() {
 
   player.translateX( velocity.x * delta );
   player.translateZ( velocity.z * delta );
-  secondPlayer.translateX( velocity.x * delta );
-  secondPlayer.translateZ( velocity.z * delta );
 
   prevTime = time;
 
