@@ -158,13 +158,110 @@ THREE.VREffect = function ( renderer, onError ) {
 
 	// render
 
-	var cameraL = new THREE.PerspectiveCamera();
+	cameraL = new THREE.PerspectiveCamera();
 	cameraL.layers.enable( 1 );
 
-	var cameraR = new THREE.PerspectiveCamera();
+	cameraR = new THREE.PerspectiveCamera();
 	cameraR.layers.enable( 2 );
 
-	this.render = function ( scene, camera, composer ) {
+
+	secondCameraL = new THREE.PerspectiveCamera();
+	secondCameraL.layers.enable( 1 );
+
+	secondCameraR = new THREE.PerspectiveCamera();
+	secondCameraR.layers.enable( 2 );
+
+
+
+
+	var clearPass = new THREE.ClearPass();
+	var clearMaskPass = new THREE.ClearMaskPass();
+
+	var maskPass1 = new THREE.MaskPass( thirdScene, camera );
+	var maskPass2 = new THREE.MaskPass( fourthScene, secondCamera );
+	
+	var renderedTexturePass1 = new THREE.TexturePass( myRenderedTexture1.texture );
+	var renderedTexturePass2 = new THREE.TexturePass( myRenderedTexture2.texture );
+
+	var renderedTexturePass1L = new THREE.TexturePass( myRenderedTexture1L.texture );
+	var renderedTexturePass1R = new THREE.TexturePass( myRenderedTexture1R.texture );
+
+	var renderedTexturePass2L = new THREE.TexturePass( myRenderedTexture2L.texture );
+	var renderedTexturePass2R = new THREE.TexturePass( myRenderedTexture2R.texture );
+
+	var outputPass = new THREE.ShaderPass( THREE.CopyShader );
+	outputPass.renderToScreen = true;
+
+	var renderPass1 = new THREE.RenderPass( scene, camera );
+	var renderPass2 = new THREE.RenderPass( secondScene, secondCamera);
+
+	var maskPass1L = new THREE.MaskPass( thirdScene, cameraL );
+	var maskPass1R = new THREE.MaskPass( thirdScene, cameraR );
+
+	var renderPass1L = new THREE.RenderPass( scene, cameraL );
+	var renderPass1R = new THREE.RenderPass( scene, cameraR );
+
+	var maskPass2L = new THREE.MaskPass( fourthScene, secondCameraL );
+	var maskPass2R = new THREE.MaskPass( fourthScene, secondCameraR );
+
+	var renderPass2L = new THREE.RenderPass( secondScene, secondCameraL );
+	var renderPass2R = new THREE.RenderPass( secondScene, secondCameraR );
+
+	var parameters = {
+		minFilter: THREE.LinearFilter,
+		magFilter: THREE.LinearFilter,
+		format: THREE.RGBFormat,
+		stencilBuffer: true
+	};
+  	renderTarget = new THREE.WebGLRenderTarget( window.innerWidth, window.innerHeight, parameters );
+
+  	composer1 = new THREE.EffectComposer(renderer, renderTarget);
+  	composer1.addPass(renderPass1);
+	composer1.addPass(maskPass1);
+	composer1.addPass(renderedTexturePass2);
+	composer1.addPass(clearMaskPass);
+	composer1.addPass(outputPass);
+
+	composer2 = new THREE.EffectComposer(renderer, renderTarget);
+	composer2.addPass(renderPass2);
+	composer2.addPass(maskPass2);
+	composer2.addPass(renderedTexturePass1);
+	composer2.addPass(clearMaskPass);
+	composer2.addPass(outputPass);
+
+
+	composer1L = new THREE.EffectComposer(renderer, renderTarget);
+  	composer1L.addPass(renderPass1L);
+	composer1L.addPass(maskPass1L);
+	composer1L.addPass(renderedTexturePass2L);
+	composer1L.addPass(clearMaskPass);
+	composer1L.addPass(outputPass);
+
+	composer1R = new THREE.EffectComposer(renderer, renderTarget);
+  	composer1R.addPass(renderPass1R);
+	composer1R.addPass(maskPass1R);
+	composer1R.addPass(renderedTexturePass2R);
+	composer1R.addPass(clearMaskPass);
+	composer1R.addPass(outputPass);
+
+
+	composer2L = new THREE.EffectComposer(renderer, renderTarget);
+  	composer2L.addPass(renderPass2L);
+	composer2L.addPass(maskPass2L);
+	composer2L.addPass(renderedTexturePass1L);
+	composer2L.addPass(clearMaskPass);
+	composer2L.addPass(outputPass);
+
+	composer2R = new THREE.EffectComposer(renderer, renderTarget);
+  	composer2R.addPass(renderPass2R);
+	composer2R.addPass(maskPass2R);
+	composer2R.addPass(renderedTexturePass1R);
+	composer2R.addPass(clearMaskPass);
+	composer2R.addPass(outputPass);
+
+
+
+	this.render = function ( scene, camera, cameraL, cameraR, composer, composerL, composerR ) {
 
 		if ( vrHMD && isPresenting ) {
 
@@ -226,12 +323,13 @@ THREE.VREffect = function ( renderer, onError ) {
 			// render left eye
 			renderer.setViewport( renderRectL.x, renderRectL.y, renderRectL.width, renderRectL.height );
 			renderer.setScissor( renderRectL.x, renderRectL.y, renderRectL.width, renderRectL.height );
-			composer.render( scene, cameraL );
+			composerL.render( scene, cameraL );
 
 			// render right eye
 			renderer.setViewport( renderRectR.x, renderRectR.y, renderRectR.width, renderRectR.height );
 			renderer.setScissor( renderRectR.x, renderRectR.y, renderRectR.width, renderRectR.height );
-			composer.render( scene, cameraR );
+			composerR.render( scene, cameraR );
+
 
 			renderer.setScissorTest( false );
 

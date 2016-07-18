@@ -12,10 +12,16 @@ function checkForWorldSwitching() {
   }
 
   if (inSecondWorld) {
-    renderer.render(scene, camera, myRenderedTexture, true);
-    vrEffect.render(secondScene, secondCamera, composer2);
+    renderer.render(scene, secondCamera, myRenderedTexture1, true);
+    renderer.render(scene, secondCameraL, myRenderedTexture1L, true);
+    renderer.render(scene, secondCameraR, myRenderedTexture1R, true);
+
+    vrEffect.render(secondScene, secondCamera, secondCameraL, secondCameraR, composer2, composer2L, composer2R);
   } else {
-    renderer.render(secondScene, secondCamera, myRenderedTexture, true);
-    vrEffect.render(scene, camera, composer1);
+    renderer.render(secondScene, camera, myRenderedTexture2, true);
+    renderer.render(secondScene, cameraL, myRenderedTexture2L, true);
+    renderer.render(secondScene, cameraR, myRenderedTexture2R, true);
+
+    vrEffect.render(scene, camera, cameraL, cameraR, composer1, composer1L, composer1R);
   }
 }
